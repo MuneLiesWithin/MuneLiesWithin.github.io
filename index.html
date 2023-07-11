@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="" type="image/ico">
+    <title>Star Wars Wiki</title>
+    <style>
+        body, html {
+            height: auto;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+                                                url("https://i.ibb.co/5vcKvKq/fundo.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            text-align: center;
+            color: white;
+        }
+        #content {
+            border: 2px solid white;
+            border-radius: 10px;
+            margin: 25px auto;
+            height: 425px;
+            margin-bottom: 20px;
+        }
+        button:hover{
+            background-color: rgb(27, 26, 26);
+            color: white;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        button:active{
+            color:rgb(143, 65, 65);
+        }
+        div:not(#content) {
+            font-size: larger;
+        }
+        .imagem {
+            border: 2px solid white;
+            border-radius: 10px;
+            margin: 25px auto;
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+        }
+        .loading {
+            margin: 150px auto;
+            display: block;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Starwars Random Wiki</h1>
+    <h3><button class="button">Randomize</button></h3>
+    <div id="content">
+        <img class="" src="" alt="">
+        <div class="nome"></div>
+        <div class="altura"></div>
+        <div class="eyeColor"></div>
+        <div class="birthYear"></div>
+        <span class=""></span>
+    </div>
+    <footer style="text-align: center;">Mune<sup>&copy;</sup>2023</footer>
+    <script>
+        const button = document.querySelector('.button')
+        const nome = document.querySelector('.nome')
+        const altura = document.querySelector('.altura')
+        const eyeColor = document.querySelector('.eyeColor')
+        const birthYear = document.querySelector('.birthYear')
+        const loading = document.querySelector('span')
+        const imagem = document.querySelector('img')
+
+        button.addEventListener('click', (e) => {
+            e.preventDefault()
+            eyeColor.innerHTML = ''
+            nome.innerHTML = ''
+            altura.innerHTML = ''
+            birthYear.innerHTML = ''
+            loading.innerHTML = 'Loading...'
+            loading.classList.add('loading')
+            imagem.classList.remove('imagem')
+            imagem.src = ''
+
+            fetch('https://swapi.dev/api/people/'+ Math.ceil(Math.random() * 83))
+                .then(res => res.json())
+                .then(data => {
+                    loading.innerHTML = ''
+                    loading.classList.remove('loading')
+                    nome.innerHTML = 'Name: ' + data.name
+                    altura.innerHTML = 'Height: ' + data.height
+                    eyeColor.innerHTML = 'Eye color: ' + data.eye_color
+                    birthYear.innerHTML = 'Birthyear: ' + data.birth_year
+                    
+                    fetch('https://akabab.github.io/starwars-api/api/all.json')
+                        .then(res => res.json())
+                        .then(img => {
+                            let index = 0;
+                            while(img[index].name != data.name){
+                                index++
+                            }
+                            imagem.src = img[index].image
+                            imagem.classList.add('imagem')
+                        })
+                })
+        })
+    </script>
+</body>
+</html>
