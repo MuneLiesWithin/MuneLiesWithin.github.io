@@ -1,122 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <title>Apollo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="" type="image/ico">
-    <title>Star Wars Wiki</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Helvetica;
-        }
-        body {
-            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
-                                                url("https://i.ibb.co/5vcKvKq/fundo.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            text-align: center;
-            color: white;
-        }
-        #content {
-            border: 2px solid white;
-            border-radius: 10px;
-            margin: 25px auto;
-            height: 425px;
-            margin-bottom: 20px;
-        }
-        button {
-            border: 1px solid black;
-            padding: 5px;
-            background-color: rgb(27, 61, 88);
-            color: white;
-            border-radius: 10px;
-        }
-        button:hover{
-            background-color: rgb(110, 38, 38);
-            color: white;
-            transition: background-color 0.2s, color 0.2s;
-            cursor: pointer;
-        }
-        button:active{
-            color:rgb(143, 65, 65);
-        }
-        div:not(#content) {
-            font-size: larger;
-        }
-        .imagem {
-            border: 2px solid white;
-            border-radius: 10px;
-            margin: 25px auto;
-            display: inline-block;
-            width: 200px;
-            height: 200px;
-        }
-        .loading {
-            margin: 150px auto;
-            display: block;
-            font-size: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Starwars Random Wiki</h1>
-    <h3><button class="button">Randomize</button></h3>
-    <div id="content">
-        <img class="" src="" alt="">
-        <div class="nome"></div>
-        <div class="altura"></div>
-        <div class="eyeColor"></div>
-        <div class="birthYear"></div>
-        <span class=""></span>
-    </div>
-    <footer style="text-align: center;">Starwars Random Wiki<sup>&copy;</sup> 2023</footer>
-    <script>
-        const button = document.querySelector('.button')
-        const nome = document.querySelector('.nome')
-        const altura = document.querySelector('.altura')
-        const eyeColor = document.querySelector('.eyeColor')
-        const birthYear = document.querySelector('.birthYear')
-        const loading = document.querySelector('span')
-        const imagem = document.querySelector('img')
-
-        button.addEventListener('click', (e) => {
-            e.preventDefault()
-            eyeColor.innerHTML = ''
-            nome.innerHTML = ''
-            altura.innerHTML = ''
-            birthYear.innerHTML = ''
-            loading.innerHTML = 'Loading...'
-            loading.classList.add('loading')
-            imagem.classList.remove('imagem')
-            imagem.src = ''
-
-            fetch('https://swapi.dev/api/people/'+ Math.ceil(Math.random() * 83))
-                .then(res => res.json())
-                .then(data => {
-                    loading.innerHTML = ''
-                    loading.classList.remove('loading')
-                    nome.innerHTML = 'Name: ' + data.name
-                    altura.innerHTML = 'Height: ' + data.height
-                    eyeColor.innerHTML = 'Eye color: ' + data.eye_color
-                    birthYear.innerHTML = 'Birthyear: ' + data.birth_year
-                    
-                    fetch('https://akabab.github.io/starwars-api/api/all.json')
-                        .then(res => res.json())
-                        .then(img => {
-                            let index = 0;
-                            while(img[index].name != data.name){
-                                index++
-                            }
-                            imagem.src = img[index].image
-                            imagem.classList.add('imagem')
-                        })
-                })
-        })
-    </script>
-</body>
+    <meta name="description" content="Jade website template">
+    <meta name="keywords" content="apollo, jade, template, html, sass, jquery">
+    <meta name="author" content="Bucky Maler">
+    <link rel="stylesheet" href="assets/css/main.css">
+  </head>
+  <body>
+    <section id="featured">
+      <g transform="translate(0.000000,749.000000) scale(0.100000,-0.100000)">
+        <path d="M0,6245.8V5001.6h500h500V5176v174.4H752.5H505v1069.8V7490H252.5H0V6245.8z"/>
+      </g>
+            <div class="wrapper">
+              <div class="blurb">
+                <h2><strong>Thoughts</strong></h2>
+                <p>Projeto feito para o compartilhamento dos pensamentos de seus usuários, possuindo cadastro, autenticação e banco de dados. Feito com Node.js, Express, Handlebars e Sequelize.
+                  <a href="https://https://github.com/MuneLiesWithin/Thoughts">Link para o código fonte</a>
+                </p>
+                
+              </div>
+              <div class="featured"><img src="assets/img/Thoughts.png" alt="Thoughts" style="height:325px;width:auto;"></div>
+            </div>
+          </section>
+    <section id="about">
+<g transform="translate(0.000000,749.000000) scale(0.100000,-0.100000)">
+	<path d="M0,6471.9V5454.2h206.5h206.5v436.2v436.2h7.6c19.8,0.3,107.9,5.7,128.3,8.2c90.2,10.9,154.9,29.4,220.4,62.8c141.1,72.6,213.3,213.3,228.3,444.1c8.7,135.3-7.3,272.3-42.9,368.3c-48.6,130.5-131,212.8-253.8,253.8c-15.5,5.2-43.5,12.8-62.2,17.1l-34,7.3l-302.2,0.8L0,7490V6471.9z M490.5,7190.8c51.1-13.6,71.2-28.8,92.9-69.8c22.3-41.9,26.4-81.5,24.7-243.2l-1.4-115l-8.4-32.1c-10.9-40.5-13.6-45.4-35.6-67.9c-21.2-22-30.7-27.4-60.6-34.5c-18.8-4.3-68.2-10.9-82.6-10.9c-3.3,0-3.8,44-3.8,291.1v291.3l26.6-1.6C456.8,7197.3,478.6,7194,490.5,7190.8z"/>
+</g>
+      <div class="wrapper">
+        <div class="camera"><img style="height:285px;width: auto;"src="assets/img/TaskManager.png" alt="TaskManager"></div>
+        <div class="blurb">
+          <h2><strong>Task Manager</strong></h2>
+          <p>Gerenciador de Tarefas com banco de dados MySQL e seguindo a arquitetura MVC. Feito com Node.js, Express, Handlebars e Sequelize.
+            <a href="https://github.com/MuneLiesWithin/Task-Manager">Link para o código fonte</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="featured">
+<g transform="translate(0.000000,749.000000) scale(0.100000,-0.100000)">
+	<path d="M0,6245.8V5001.6h500h500V5176v174.4H752.5H505v1069.8V7490H252.5H0V6245.8z"/>
+</g>
+      <div class="wrapper">
+        <div class="blurb">
+          <h2><strong>Star Wars Random Wiki</strong></h2>
+          <p>Um Wiki que retorna de maneira aleatória informações sobre os personagens da saga Star Wars. Feito com HTML, CSS e Javascript puros, com o intuito de testar a Fetch API.
+            <a href="https://github.com/MuneLiesWithin/StarWars-Wiki">Link para o código fonte</a>
+          </p>
+        </div>
+        <div class="featured"><img src="assets/img/StarWars.png" alt="StarWars"></div>
+      </div>
+    </section>
+    <section id="about">
+      <g transform="translate(0.000000,749.000000) scale(0.100000,-0.100000)">
+        <path d="M0,6471.9V5454.2h206.5h206.5v436.2v436.2h7.6c19.8,0.3,107.9,5.7,128.3,8.2c90.2,10.9,154.9,29.4,220.4,62.8c141.1,72.6,213.3,213.3,228.3,444.1c8.7,135.3-7.3,272.3-42.9,368.3c-48.6,130.5-131,212.8-253.8,253.8c-15.5,5.2-43.5,12.8-62.2,17.1l-34,7.3l-302.2,0.8L0,7490V6471.9z M490.5,7190.8c51.1-13.6,71.2-28.8,92.9-69.8c22.3-41.9,26.4-81.5,24.7-243.2l-1.4-115l-8.4-32.1c-10.9-40.5-13.6-45.4-35.6-67.9c-21.2-22-30.7-27.4-60.6-34.5c-18.8-4.3-68.2-10.9-82.6-10.9c-3.3,0-3.8,44-3.8,291.1v291.3l26.6-1.6C456.8,7197.3,478.6,7194,490.5,7190.8z"/>
+      </g>
+            <div class="wrapper">
+              <div class="camera"><img src="assets/img/Devoluções.png" alt="Devoluções" style="height:250px;width:auto;"></div>
+              <div class="blurb">
+                <h2><strong>Sistema de Devoluções</strong></h2>
+                <p>Um sistema de devoluções de uma biblioteca com banco de dados e CRUD. Feito com Node.js e Express.
+                  <a href="https://github.com/MuneLiesWithin/Devolucao-MySQL-BD">Link para o código fonte</a>
+                </p>
+              </div>
+            </div>
+          </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+    <script src="assets/js/functions-min.js"></script>
+  </body>
 </html>
